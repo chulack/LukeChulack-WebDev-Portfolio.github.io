@@ -1,0 +1,300 @@
+@charset "UTF-8";
+
+/*********************************************************************
+***
+*Original Author: Luke Chulack                         
+*Date Created: 04/02/2021                                     
+*Version: 1.0                                           
+*Date Last Modified: 04/02/2021                               
+*Modified by: Luke Chulack        
+*Modification log:   
+    version 1.0 - 04/02/2021 - all the main style. nav, home, about, wallet, contact/report bug, and footer.
+***
+******************************************************************** */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Train+One&family=Yatra+One&display=swap');
+
+
+/* general selectors */
+body {
+
+    font-family: 'Share Tech Mono', monospace;
+
+    /*     font-family: 'Train One', cursive;
+ */
+}
+
+
+.v-line {
+
+    border-left: 4px solid #48AA2D;
+    height: 30px;  
+    position: relative;
+    margin-left: -3px;
+
+    left: 50%;
+    top: 0;
+
+  
+}
+
+/* navBar slectors */
+#menuSet {
+
+
+}
+
+/* home selectors */
+
+#home {
+
+    background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1504&q=80");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+  
+}
+
+#home h1 {
+    font-family: 'Train One', cursive;
+    font-size: 80px;
+    font-weight: bold;
+}
+
+#home p {
+
+    font-family: 'Yatra One', cursive;
+    font-size: 23px;
+
+}
+
+#textSet {
+    color: #48AA2D;
+
+    position: relative;
+    text-align: center;
+
+    left: 50%;
+
+    top: 30%;
+    transform: translate(-50%, -30%);
+
+}
+
+
+.arrowDown {
+
+  border: solid #F8F9FA;  
+  width: 15px;
+  height: 15px;
+  border-top-width: 0px;
+  border-right-width: 3px;
+  border-left-width: 0px;
+  border-bottom-width: 3px;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+
+
+}
+
+#arrowSet {
+    height: 30px;
+    background-color: #48AA2D;
+
+    position: relative;
+    text-align: center;
+
+    cursor: pointer;
+
+
+}
+
+
+/* about selectors */
+
+#about  {
+
+    color: #48AA2D;
+
+}
+
+#about a {
+
+    color: #48AA2D;
+    text-decoration: underline;
+
+}
+
+#about h2  {
+
+    margin-top: 12rem;
+
+    text-align: center;
+
+}
+
+#about p {
+
+    font-size: 18px;
+    margin-top: 3rem;
+    margin-bottom: 18rem;
+
+}
+
+
+
+/* get wallet selectors */
+
+#wallet {
+
+    color: #48AA2D;
+
+}
+
+#wallet h2 {
+
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    text-align: center;
+
+
+}
+
+
+#wallet p  {
+    font-size: 18px;
+    margin-top: 3rem;
+
+
+}
+
+#wallet input {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    width:300px;
+    height: 50px;
+    color: #F8F9FA;
+    background-color: #48AA2D;
+    border: none;
+
+}
+
+
+
+#imagesDownload {
+    margin-bottom: 18rem;
+
+}
+
+#linuxLogo {
+
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+
+}
+
+#imagesDownloadArea {
+
+    text-align: center;
+
+}
+
+/* report bug selectors */
+
+
+.modal {
+    color: #48AA2D;
+
+}
+.nav-link {
+
+    color: #48AA2D !important;
+    font-family: 'Yatra One', cursive !important;
+
+}
+
+.modal-body {
+    text-align: center;
+}
+
+input[type=text], input[type=email], textarea {
+
+    width: 100%;
+    font-size: 18px;
+
+    padding-left: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #48AA2D;
+
+
+}
+
+
+input[type=text]:active, input[type=email]:active, textarea:active {
+
+
+}
+
+
+input[type=text], input[type=email] {
+
+    height: 50px;    
+
+
+}
+
+textarea {
+
+    resize: none;
+    height: 180px;
+
+}
+
+input[type=submit] {
+
+    width: 30%;
+    height: 40px;   
+    border: none; 
+    background-color: #48AA2D;
+    color: #F8F9FA;
+    font-size: large;
+}
+
+/* footer selectors */
+
+footer{
+    margin-top: 3rem;
+    background-color: #48AA2D;
+
+}
+
+.footerIcon {
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+#footerIcon2 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+/* media query */
+
+@media screen and (min-width: 650px) {
+
+    /* get wallet selectors */
+    #imagesDownloadArea {
+
+        text-align: left;
+
+    }
+
+}
