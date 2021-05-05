@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+html body {
+    color: white;
+    background-color: black;
+
+}
+.grid {
+
+    display: flex;
+    flex-wrap: wrap;
+    border: solid 1px red;
+    width: 300px;
+    height: 300px;
+    background-image: url(../media/images/backgrounds/back1.png);
+}
+
+.grid div {
+
+    width: 20px;
+    height: 20px;
+
+}
+
+.shooter {
+
+    background-image: url(../media/images/sprites/ship.png);
+
+} 
+
+.invader {
+
+    background-image: url(../media/images/sprites/alien.png);
+
+}
+
+.invader_2 {
+
+    background-image: url(../media/images/sprites/alien2.png);
+
+}
+
+.dead_invader_1 {
+    
+    background-image: url(../media/images/sprites/dead_alien.png);
+
+
+}
+
+
+.boom {
+
+    background-color: red;
+
+}
+
+.died_invader {
+
+    background-image: url(../media/images/sprites/died_alien.png);
+
+
+}
+
+
+.bullet {
+
+    background-image: url(../media/images/sprites/bullet.png);
+
+}
+
+.ufo_1 {
+
+    background-image: url(../media/images/sprites/ufo1.png);
+
+}
+
+.ufo_2 {
+
+    background-image: url(../media/images/sprites/ufo2.png);
+
+}
+
+
+.alien_ship_1 {
+
+    background-image: url(../media/images/sprites/alienship1.png);
+
+}
+
+.alien_ship_2 {
+    
+    background-image: url(../media/images/sprites/alienship2.png);
+
+}
+.red {
+
+    color: red;
+
+}
+
+.green {
+
+    color: greenyellow;
+
+}
+
+#container {
+}
+
+
