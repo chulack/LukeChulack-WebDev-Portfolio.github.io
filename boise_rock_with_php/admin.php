@@ -1,7 +1,7 @@
 <?php
     
 
-          
+        // connects to server
         $dsn = "mysql:host=localhost;dbname=boiseRockForm";
         $username="mgs_user";
         $password = "pa55word";
@@ -36,14 +36,12 @@
             }
             
             try {
-                     // Get all selected employee
+              // Get all selected employee
             $queryEmployee = 'SELECT * FROM employee';
           $statement1 = $db->prepare($queryEmployee);
-           // $statement1->bindValue(':employee_id', $employee_id);
             $statement1->execute();
-            //$category = $statement1->fetch();
             $employees = $statement1;
-//            $statement1->closeCursor();
+
 
             $query2 = "SELECT contactMSGID, contactMSG.name, "
                     . "contactMSG.userEmail, contactMSG.userMSG, contactMSG.msgDate,  contactMSG.employeeID FROM "
@@ -55,7 +53,6 @@
             $statement2->execute();
 
             $visits = $statement2;
-           // print_r($employees);
             } catch (PDOException $e) {
                  echo "Error".$e->getMessage();
             }
@@ -112,6 +109,8 @@
     </nav>
     <div class="customM1 container">
     <section class="container rounded mt-5 p-5">
+         <!-- display employees -->
+
      <h1>Admin</h1>
      <h3>Select An employee to view messages </h3>
      <aside>
@@ -131,10 +130,11 @@
          <tr style="border:1px solid red;">
              <th>Name:</th>
              <th>Email:</th>
-             <th>MSG:</th><!-- comment -->
+             <th>MSG:</th>
              <th>Date:</th>
  <th></th>
          </tr>
+ <!-- display table of data -->
 <?php foreach ($visits as $vist) : ?>
         
          <tr style="border:1px solid red;">
@@ -145,8 +145,8 @@
              <td>
                  <form action="admin.php" method="post">
                      <input type="hidden" name="action" value="delete_visit">
-                     <input type="hidden" name="vist_id" value="<?php echo $vist["contactMSGID"]; ?>"><!-- comment -->
-                     <input type="submit" value="Delete" ><!-- comment -->
+                     <input type="hidden" name="vist_id" value="<?php echo $vist["contactMSGID"]; ?>">
+                     <input type="submit" value="Delete" >
                      
                  </form>
              </td>
