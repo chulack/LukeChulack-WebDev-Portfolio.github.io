@@ -85,9 +85,9 @@
 </head>
 
 <body>
-    <div class=""><a class="" href="index.html"><img id="logo"  src="images/logo.png" alt="Boise Rock logo" class=" navbar-brand float-left fixed-top position-absolute ml-5 mt-3"></a></div>
+    <div class=""><a class="" href="index.html" class=" navbar-brand float-left fixed-top position-absolute ml-5 mt-3"></a></div>
     <nav class="navbar navbar-fixed-top navbar-dark bg-dark text-light navbar-expand-md mb-5">
-
+Boise Rock
 
         <div class="mb-auto ml-auto">
             <button type="button" class="d-md-none navbar-toggler-icon" data-toggle="collapse" data-target="#navbarNav">
@@ -98,12 +98,7 @@
                 <li class="nav-item text-underline ml-auto"><a href="index.html" class="active nav-link text-light">
                         <h4>Home</h4>
                     </a></li>
-                <li class="nav-item ml-auto"><a href="about.html" class="nav-link text-light">
-                        <h4>About</h4>
-                    </a></li>
-                <li class="nav-item ml-auto"><a href="contact.html" class="nav-link text-light">
-                        <h4><u>Contact</u></h4>
-                    </a></li>
+               
             </ul>
         </div>
     </nav>
