@@ -36,7 +36,7 @@
             }
             
             try {
-                     // Get name for selected category
+                     // Get all selected employee
             $queryEmployee = 'SELECT * FROM employee';
           $statement1 = $db->prepare($queryEmployee);
            // $statement1->bindValue(':employee_id', $employee_id);
@@ -59,7 +59,7 @@
             } catch (PDOException $e) {
                  echo "Error".$e->getMessage();
             }
-     
+     //delete msg
          } else if ($action == "delete_visit") {
              $vist_id = filter_input(INPUT_POST, "vist_id", FILTER_VALIDATE_INT);
              $query = "DELETE FROM `contactMSG` WHERE `contactMSG`.`contactMSGID` = :vist_id;";
