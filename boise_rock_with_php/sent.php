@@ -1,4 +1,12 @@
 <?php
+
+/* *******************************************
+ * Date name Description 
+ * ------------------------------------------------------------------
+ *9/17/21 | Luke | Database connection has now been moved from in this file to an implementation in oop as well as other functions being moved to a model setup. 
+ * *******************************************/
+
+
 #gets data if it exists or sends back to home page if data does not exist
 $name = FILTER_INPUT(INPUT_POST, "name");
 $email = FILTER_INPUT(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);;
@@ -7,32 +15,14 @@ $msg = FILTER_INPUT(INPUT_POST, "msg");
 if (isset($name) && isset($email) && isset($msg) && trim($name) != "" && trim($email) != "" && trim($msg) != "") {
 
  
- 
-    try {
 
-        $dsn = "mysql:host=localhost;dbname=boiseRockForm";
-        $username="mgs_user";
-        $password = "pa55word";
-
-        $db = new PDO($dsn, $username, $password);
+        require_once('./model/database.php');
+        require_once('./model/vist.php');
 
 
-    } catch (PDOException $e) {
+       addVisit($name, $email, $msg);
 
-    }
 
-    $query = '
-    INSERT INTO contactMSG
-                        (name, userEmail, userMSG, msgDate, employeeID) 
-                        VALUES
-                        ("'. $name .'", "'. $email .'", "'. $msg .'", NOW(), 3);
-                        ';
-    $statement = $db->prepare($query);
-    # $statement->bindValue(":name", $name);
-    # $statement->bindValue(":email", $emails);
-    # $statement->bindValue(":msg", $msg);
-    $statement->execute();
-    $statement->closeCursor();
 
 } else {
 
