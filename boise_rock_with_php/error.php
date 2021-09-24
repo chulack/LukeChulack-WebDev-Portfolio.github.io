@@ -3,21 +3,21 @@
 /* *******************************************
  * Date name Description 
  * ------------------------------------------------------------------
- *9/21/21 | Luke | added the struture for an error display system. 
+ * 9/24/21 | Luke | added the struture for an error display system. 
  * *******************************************/
 
 
 #gets data from errorType hidden input. 
 $errorType = FILTER_INPUT(INPUT_POST, "errorType");
 
-#message that will explain the error, it will be assigned to it by logic that will be added.
 $errorMSG =  "";
 
-# this will be removed in the final version
+
 
 if(!isset($errorType)) {
 
-    $errorMSG =  "Message about error goes here.";
+    $errorMSG =  "Please Try again or contact the Web Mster.";
+    $errorType = "Unknown";
 }
 
 
