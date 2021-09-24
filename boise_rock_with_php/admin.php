@@ -3,6 +3,8 @@
  * Date name Description 
  * ------------------------------------------------------------------
  *9/17/21 | Luke |  The database connection has now been moved from in this file to an implementation in oop as well as other functions like the database employee interactions being moved to a model setup. The Navbar is now setup with an Admin Ui.
+ *9/24/21 | Luke |  Built a login system that works with session date.  The Admin page must be logged into with valid_admin.php or a user can not enter the admin area.
+
  * *******************************************/
 
 
@@ -10,6 +12,9 @@
         require_once('./model/database.php');
         require_once('./model/employee.php');
         require_once('./model/vist.php');
+
+         require_once('./util/secure_conn.php');
+         require_once('./util/valid_admin.php'); 
 
             
             // check action
@@ -106,8 +111,11 @@ Boise Rock
 
                                         <a class="nav-link " data-anijs="if: mouseover, on: #contact_nav, do: pulse animated" data-toggle="modal" data-target="#contact_form "><h4>Test Contact</h4></a>
 
-                    </li>           
-                   
+                    </li>        
+                       
+                    <li class="nav-item text-underline ml-auto"><a href="logout.php" class="active nav-link text-light">
+                        <h4>Logout</h4>
+                    </a></li>
             </ul>
         </div>
 
