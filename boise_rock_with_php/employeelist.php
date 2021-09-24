@@ -3,6 +3,7 @@
  * Date name Description 
  * ------------------------------------------------------------------
  *9/17/21 | Luke | database connection has now been moved from in this file to an implementation in oop as well as other functions like the database employee interactions being moved to a model setup. 
+  *9/24/21 | Luke |  The  login system that works with session date needs all non admin pages to send non signed in users to it.  is_admin.php will check to see if a user is signed in or it will send them  to admin so they login.
  * *******************************************/
 
 
@@ -11,6 +12,8 @@
 require_once('./model/database.php');
      
 require_once('./model/employee.php');
+
+require_once('./util/is_admin.php');
 
 $emplyees = EmployeeDB::getEmployees();
 
@@ -59,6 +62,9 @@ Boise Rock
                                         <a class="nav-link " data-anijs="if: mouseover, on: #contact_nav, do: pulse animated" data-toggle="modal" data-target="#contact_form "><h4>Test Contact</h4></a>
 
                     </li>    
+                    <li class="nav-item text-underline ml-auto"><a href="logout.php" class="active nav-link text-light">
+                        <h4>Logout</h4>
+                    </a></li>
             </ul>
         </div>
     </nav>
