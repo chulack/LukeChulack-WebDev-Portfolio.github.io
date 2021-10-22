@@ -5,7 +5,7 @@
 -- ------------    ----------       -----------------
 --  10/8/2021       Luke Chulack     -- Creating the database, -- uses/login, and tables for the disk_inventorylc project --
 --  10/15/2021       Luke Chulack     -- fixed proplems pointed out in feed back, add inserts for intersection tables  and all other tables --
---  10/22/2021       Luke Chulack     -- made the View_Individual_Artist view, media data with artist --
+--  10/22/2021       Luke Chulack     -- made the View_Individual_Artist view, media data with artist, added a group artist select, and complated all requested actions --
 
 -- ******************************************************************************************** --
 
@@ -613,7 +613,6 @@ go
 
 select mediaName, releseDate, "Individual Name" = CONCAT( View_Individual_Artist.artistFName, View_Individual_Artist.artistLName) from media join artistIntersectionTable on media.mediaID = artistIntersectionTable.mediaID join View_Individual_Artist on artistIntersectionTable.artistID = View_Individual_Artist.artistID; 
 go
-
 
 -- 7 show the borrwed meida and who borrowed them 
 
