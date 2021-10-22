@@ -1,10 +1,11 @@
--- project3 by Luke Chulackc
+-- project4 by Luke Chulackc
 
 -- ******************************************************************************************** --
 --    Date          Programer           Description
 -- ------------    ----------       -----------------
 --  10/8/2021       Luke Chulack     -- Creating the database, -- uses/login, and tables for the disk_inventorylc project --
 --  10/15/2021       Luke Chulack     -- fixed proplems pointed out in feed back, add inserts for intersection tables  and all other tables --
+--  10/22/2021       Luke Chulack     -- made the View_Individual_Artist view, media data with artist --
 
 -- ******************************************************************************************** --
 
@@ -588,3 +589,19 @@ VALUES
 go
 
 select * from mediaIntersectiontable where returnedDate  is null; 
+go
+
+-- showing media in database along with related artists 
+select mediaName, releseDate, artist.artistfname, artist.artistLname from media join  artistIntersectionTable on   media.mediaID = artistIntersectionTable.mediaID join artist on artistIntersectionTable.artistID = artist.artistID where  artistTypeID = 1;
+
+select * from media;
+select * from artistIntersectionTable;
+select * from artist;
+
+-- the View_Individual_Artist view
+
+create view View_Individual_Artist as select artistID, artistFName, artistlName from artist where artistTypeID = 1;
+go
+
+select artistFName, artistlName from View_Individual_Artist;
+go
