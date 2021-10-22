@@ -591,17 +591,42 @@ go
 select * from mediaIntersectiontable where returnedDate  is null; 
 go
 
--- showing media in database along with related artists 
-select mediaName, releseDate, artist.artistfname, artist.artistLname from media join  artistIntersectionTable on   media.mediaID = artistIntersectionTable.mediaID join artist on artistIntersectionTable.artistID = artist.artistID where  artistTypeID = 1;
+--  3 showing media in database along with related artists 
+select mediaName, releseDate, artist.artistfname, artist.artistLname from media join  artistIntersectionTable on   media.mediaID = artistIntersectionTable.mediaID join artist on artistIntersectionTable.artistID = artist.artistID where  artistTypeID = 1 order by artist.artistLname;
 
-select * from media;
-select * from artistIntersectionTable;
-select * from artist;
-
--- the View_Individual_Artist view
+--  4 the View_Individual_Artist view
+drop view if exists View_Individual_Artist;
+go
 
 create view View_Individual_Artist as select artistID, artistFName, artistlName from artist where artistTypeID = 1;
 go
 
 select artistFName, artistlName from View_Individual_Artist;
 go
+
+-- 5 shows media with connection eith groups
+
+select mediaName, releseDate, "Group Name" = artist.artistfname from media join  artistIntersectionTable on   media.mediaID = artistIntersectionTable.mediaID join artist on artistIntersectionTable.artistID = artist.artistID where  artistTypeID = 2 order by artist.artistfname;
+go
+-- 6 join with view regarding borrowed media and a sub query
+
+
+select mediaName, releseDate, "Individual Name" = CONCAT( View_Individual_Artist.artistFName, View_Individual_Artist.artistLName) from media join artistIntersectionTable on media.mediaID = artistIntersectionTable.mediaID join View_Individual_Artist on artistIntersectionTable.artistID = View_Individual_Artist.artistID; 
+go
+
+
+-- 7 show the borrwed meida and who borrowed them 
+
+select "First" = fname, "Last" =  lname,  mediaName, borrowedDate, returnedDate from media join mediaIntersectiontable on  media.mediaID = mediaIntersectiontable.mediaID join borrower on mediaIntersectiontable.borrowerID = borrower.borrowerID order by borrowedDate;
+go
+
+-- 8 number of time disk has been borrowed 
+SELECT media.mediaID, media.mediaName, 'Time Borrowed' = COUNT(mediaIntersectiontable.mediaID)
+FROM mediaIntersectiontable join media on mediaIntersectiontable.mediaID = media.mediaID
+GROUP BY media.mediaID, media.mediaName order by media.mediaID;
+go
+-- 9 outstanding disks
+
+select mediaName, borrowedDate, returnedDate, lname from media join mediaIntersectiontable on  media.mediaID = mediaIntersectiontable.mediaID join borrower on mediaIntersectiontable.borrowerID = borrower.borrowerID where returnedDate is NULL; 
+go
+
