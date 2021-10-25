@@ -6,7 +6,7 @@
 --  10/8/2021       Luke Chulack     -- Creating the database, -- uses/login, and tables for the disk_inventorylc project --
 --  10/15/2021       Luke Chulack     -- fixed proplems pointed out in feed back, add inserts for intersection tables  and all other tables --
 --  10/22/2021       Luke Chulack     -- made the View_Individual_Artist view, media data with artist, added a group artist select, and complated all requested actions --
-
+-- -- added  stored procedures form lab 1  for week 5
 -- ******************************************************************************************** --
 
 -- create database
@@ -629,3 +629,61 @@ go
 select mediaName, borrowedDate, returnedDate, lname from media join mediaIntersectiontable on  media.mediaID = mediaIntersectiontable.mediaID join borrower on mediaIntersectiontable.borrowerID = borrower.borrowerID where returnedDate is NULL; 
 go
 
+
+-- lab 1 for week 5 stored procedures
+
+-- the insert sp of mediaIntersectiontable
+drop proc if exists sp_ins_mediaIntersectiontable
+go
+
+CREATE PROC sp_ins_mediaIntersectiontable @borrowerID int, @mediaID int, @borrowedDate date, @returnedDate date = NULL  as
+	begin try
+		 INSERT INTO mediaIntersectiontable(borrowerID,mediaID,borrowedDate,returnedDate)
+		VALUES 
+		  (@borrowerID,
+		  @mediaID,
+		  @borrowedDate, 
+		  @returnedDate); 
+	end try
+	begin catch
+	PRINT 'An error occurred. Row was not inserted.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+ go
+
+ exec sp_ins_mediaIntersectiontable 2, 2, '10-25-2021';
+  go
+  exec sp_ins_mediaIntersectiontable 2, 2, '10-01-2021', '10-10-2021';
+   go
+   exec sp_ins_mediaIntersectiontable 2, 100, '10-01-2021', '10-10-2021'; -- exec of error
+   go
+
+-- the update sp of mediaIntersectiontable
+-- update mediaIntersectiontable set borrowerID = @borrowerID int, mediaID = @mediaID int, borrowedDate = @borrowedDate date, returnedDate = @returnedDate date = NULL
+
+drop proc if exists sp_upde_mediaIntersectiontable
+go
+
+create proc sp_upde_mediaIntersectiontable  @mediaIntersectionID int, @borrowerID int, @mediaID int,  @borrowedDate date, @returnedDate date = NULL  as 
+begin try
+update mediaIntersectiontable set borrowerID = @borrowerID, mediaID = @mediaID, borrowedDate = @borrowedDate, returnedDate = @returnedDate where mediaIntersectionID = @mediaIntersectionID;
+end try 
+begin catch
+	PRINT 'An error occurred. Row was not updated.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+end catch
+go
+
+exec sp_upde_mediaIntersectiontable 21, 18, 18, "12-12-2021";
+go
+
+exec sp_upde_mediaIntersectiontable 1, 18, 1811, "12-12-2021"; -- with error
+go
+
+select * from mediaIntersectiontable;
