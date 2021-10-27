@@ -1,4 +1,5 @@
--- project4 by Luke Chulackc
+------ not done yet
+-- inprogress project5 by Luke Chulackc
 
 -- ******************************************************************************************** --
 --    Date          Programer           Description
@@ -6,7 +7,8 @@
 --  10/8/2021       Luke Chulack     -- Creating the database, -- uses/login, and tables for the disk_inventorylc project --
 --  10/15/2021       Luke Chulack     -- fixed proplems pointed out in feed back, add inserts for intersection tables  and all other tables --
 --  10/22/2021       Luke Chulack     -- made the View_Individual_Artist view, media data with artist, added a group artist select, and complated all requested actions --
--- -- added  stored procedures form lab 1  for week 5
+-- 10/25/2021 -- added  the stored procedures form lab 1  for week 5
+--  10/29/2021 created the rest of the stored procedures 
 -- ******************************************************************************************** --
 
 -- create database
@@ -654,6 +656,11 @@ CREATE PROC sp_ins_mediaIntersectiontable @borrowerID int, @mediaID int, @borrow
 	end catch
  go
 
+ -- grant premission to exec from diskUserLC
+ grant exec on sp_ins_mediaIntersectiontable to diskUserLC;
+ go
+
+ -- run premade execs
  exec sp_ins_mediaIntersectiontable 2, 2, '10-25-2021';
   go
   exec sp_ins_mediaIntersectiontable 2, 2, '10-01-2021', '10-10-2021';
@@ -679,6 +686,11 @@ begin catch
         CONVERT(varchar(255), ERROR_MESSAGE());
 end catch
 go
+ -- grant premission to exec from diskUserLC
+ grant exec on sp_upde_mediaIntersectiontable to diskUserLC;
+ go
+
+ -- run premade execs
 
 exec sp_upde_mediaIntersectiontable 21, 18, 18, "12-12-2021";
 go
@@ -687,3 +699,256 @@ exec sp_upde_mediaIntersectiontable 1, 18, 1811, "12-12-2021"; -- with error
 go
 
 select * from mediaIntersectiontable;
+
+-- project 5
+
+-- artsit stored proc
+drop proc if exists sp_ins_artist;
+go
+create proc sp_ins_artist @artistFname nchar(60), @artistLname  nchar(60) = NULL, @artistTypeID int as 
+begin try
+ INSERT INTO artist(artistFname, artistLname, artistTypeID)
+VALUES 
+  (@artistFname,
+  @artistLname,
+  @artistTypeID);
+  	end try
+	begin catch
+	PRINT 'An error occurred. Row was not inserted.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+  go
+
+  -- grant premission to exec from diskUserLC
+ grant exec on sp_ins_artist to diskUserLC;
+ go
+
+ -- run premade execs
+
+exec sp_ins_artist 'MC', 'Hammer', 1;
+go
+
+exec sp_ins_artist 'Rockwell', '', 1; 
+go
+
+exec sp_ins_artist 'Jard', 'leto',  111 ; -- with error
+go
+
+-- update artist 
+drop proc if exists sp_upd_artist;
+go
+create proc sp_upd_artist @artistFname nchar(60), @artistLname  nchar(60) = NULL, @artistTypeID int as 
+begin try
+	update artist set artistFname = @artistFname, artistLname = @artistLname where artistID = @artistTypeID; 
+end try
+begin catch
+
+	PRINT 'An error occurred. Row was not Updated.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+  go
+   grant exec on sp_upd_artist to diskUserLC;
+   go
+
+exec sp_upd_artist 'Rick', 'Astley', 22;
+go
+
+exec sp_upd_artist 'Rick', 'Astley', 111;  -- with error
+go
+
+
+-- delete 
+drop proc if exists sp_del_artist;
+go
+create proc sp_del_artist  @artistID int as 
+begin try
+delete artist where artistID = @artistID
+end try
+begin catch
+
+	PRINT 'An error occurred. Row was not deleted.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+  go
+   grant exec on sp_del_artist to diskUserLC;
+   go
+
+exec sp_del_artist 22;
+  go
+
+  exec sp_del_artist 1; -- with error
+  go
+
+  -- borrower procs
+drop proc if exists sp_ins_borrower;
+go
+create proc sp_ins_borrower @fname char(60), @lname char(60), @borrowerPhoneNum char(60)  as
+ 
+ begin try
+	INSERT INTO borrower(fname,lname,borrowerPhoneNum)
+	VALUES 
+	  (@fname,
+	  @lname, @borrowerPhoneNum);
+
+end try
+begin catch
+
+
+	PRINT 'An error occurred. Row was not inserted.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+  go
+    -- grant premission to exec from diskUserLC
+
+   grant exec on sp_ins_borrower to diskUserLC;
+   go
+
+    -- run premade execs
+exec sp_ins_borrower 'tim', 'thetim', '800-313-4598';
+
+exec sp_ins_borrower Null, 'Nullman', '800-313-4598'; -- erorr
+
+go
+
+
+-- delete
+
+drop proc if exists sp_del_borrower;
+go
+create proc sp_del_borrower  @borrowerID int  as
+ 
+ begin try
+ delete borrower where borrowerID = @borrowerID
+end try
+begin catch
+
+	PRINT 'An error occurred. Row was not Deleted.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+  go
+    -- grant premission to exec from diskUserLC
+
+   grant exec on sp_del_borrower to diskUserLC;
+   go
+
+    -- run premade execs
+exec sp_del_borrower 21;
+
+exec sp_del_borrower 1; -- erorr
+
+go
+
+
+
+-- meida table procs
+
+-- insert
+drop proc if exists sp_ins_media;
+go
+create proc sp_ins_media @mediaName varchar(60), @releseDate date, @genreID int, @statusID int, @mediaTypeID int as
+ begin try
+
+INSERT INTO media (mediaName,releseDate,genreID,statusID,mediaTypeID)
+VALUES 
+  (@mediaName,
+  @releseDate,
+  @genreID, 
+  @statusID,
+ @mediaTypeID)
+ end try
+begin catch
+
+PRINT 'An error occurred. Row was not insurted.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+  go
+    -- grant premission to exec from diskUserLC
+
+   grant exec on sp_ins_media to diskUserLC;
+   go
+
+    -- run premade execs
+exec sp_ins_media 'Never Gonna Give You Up', '10/21/1986', 1, 1, 1;
+
+exec sp_ins_media 'Never Gonna Give You Up', '10/21/1986', 1, 1, 11; -- erorr
+
+go
+
+
+-- update
+drop proc if exists sp_upd_media;
+go
+create proc sp_upd_media @mediaName varchar(60), @releseDate date, @genreID int, @statusID int, @mediaTypeID int, @mediaID int as
+ begin try
+
+	update media set mediaName = @mediaName, releseDate = @releseDate, genreID = @genreID, mediaTypeID = @mediaTypeID where mediaID = @mediaID;
+
+  end try
+begin catch
+
+PRINT 'An error occurred. Row was not insurted.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+  go
+    -- grant premission to exec from diskUserLC
+
+   grant exec on sp_upd_media to diskUserLC;
+   go
+
+    -- run premade execs
+exec sp_upd_media 'Never Gonna Give You Up', '07/27/1986', 1, 1, 1, 21;
+
+exec sp_upd_media 'Never Gonna Give You Up', '07/27/1986', 1, 1, 11, 21; -- erorr
+go
+
+
+
+-- deleate 
+drop proc if exists sp_del_media;
+go
+create proc sp_del_media  @mediaID int as
+ begin try
+  delete media where mediaID = @mediaID
+
+ end try
+begin catch
+
+PRINT 'An error occurred. Row was not deleted.';
+    PRINT 'Error number: ' +
+        CONVERT(varchar, ERROR_NUMBER());
+    PRINT 'Error message: ' +
+        CONVERT(varchar(255), ERROR_MESSAGE());
+	end catch
+  go
+    -- grant premission to exec from diskUserLC
+
+   grant exec on sp_del_media to diskUserLC;
+   go
+  
+  exec sp_del_media 16;
+
+exec sp_del_media 1; -- erorr
+
+   select * from media 
+
