@@ -1,5 +1,4 @@
------- not done yet
--- inprogress project5 by Luke Chulackc
+-- project5 by Luke Chulackc
 
 -- ******************************************************************************************** --
 --    Date          Programer           Description
@@ -613,7 +612,7 @@ go
 -- 6 join with view regarding borrowed media and a sub query
 
 
-select mediaName, releseDate, "Individual Name" = CONCAT( View_Individual_Artist.artistFName, View_Individual_Artist.artistLName) from media join artistIntersectionTable on media.mediaID = artistIntersectionTable.mediaID join View_Individual_Artist on artistIntersectionTable.artistID = View_Individual_Artist.artistID; 
+select mediaName, releseDate, "Individual Name" = artist.artistFName from media join artistIntersectionTable on media.mediaID = artistIntersectionTable.mediaID join artist on artistIntersectionTable.artistID = artist.artistID where artist.artistID  in ( select artistID from View_Individual_Artist);
 go
 
 -- 7 show the borrwed meida and who borrowed them 
@@ -949,6 +948,6 @@ PRINT 'An error occurred. Row was not deleted.';
   exec sp_del_media 16;
 
 exec sp_del_media 1; -- erorr
-
-   select * from media 
+go
+  -- select * from media 
 
