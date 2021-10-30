@@ -848,7 +848,7 @@ begin catch
     -- run premade execs
 exec sp_del_borrower 21;
 
-exec sp_del_borrower 1; -- erorr
+exec sp_del_borrower 1; -- error
 
 go
 
@@ -887,7 +887,7 @@ PRINT 'An error occurred. Row was not insurted.';
     -- run premade execs
 exec sp_ins_media 'Never Gonna Give You Up', '10/21/1986', 1, 1, 1;
 
-exec sp_ins_media 'Never Gonna Give You Up', '10/21/1986', 1, 1, 11; -- erorr
+exec sp_ins_media 'Never Gonna Give You Up', '10/21/1986', 1, 1, 11; -- error
 
 go
 
@@ -918,7 +918,7 @@ PRINT 'An error occurred. Row was not insurted.';
     -- run premade execs
 exec sp_upd_media 'Never Gonna Give You Up', '07/27/1986', 1, 1, 1, 21;
 
-exec sp_upd_media 'Never Gonna Give You Up', '07/27/1986', 1, 1, 11, 21; -- erorr
+exec sp_upd_media 'Never Gonna Give You Up', '07/27/1986', 1, 1, 11, 21; -- error
 go
 
 
@@ -947,7 +947,7 @@ PRINT 'An error occurred. Row was not deleted.';
   
   exec sp_del_media 16;
 
-exec sp_del_media 1; -- erorr
+exec sp_del_media 1; -- error
 go
   -- select * from media 
 
