@@ -1,0 +1,90 @@
+@charset "utf-8";
+
+* {
+
+    margin: 0px;
+    padding: 0px;
+
+}
+
+#calcultor table {
+    width: 100%;
+    height: 100vh;
+}
+
+#calcultor input[type=button] {
+
+    cursor: pointer;
+    border: 0px;
+
+}
+
+#calcultor input[type=button]:hover {
+
+    opacity: 0.9;
+
+    transform: scaleY(0.9);
+
+}
+
+
+#rowOne #results {
+
+
+    font-size: 40px;
+
+    font-style: normal;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+
+#rowTwo input[type=button],  #rowThree input[type=button], #rowFour input[type=button],  #rowFive input[type=button] {
+
+
+ font-size: 30px;
+ font-style: normal;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    padding: 2.5px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    
+}
+
+#rowSix #equalsBTN {
+
+
+
+    font-size: 30px;
+
+    font-style: normal;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    padding: 1px 2px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+
+}
+
+#divionBTN, #multiplicationBTN, #additionBTN, #subtractionBTN, #equalsBTN {
+
+    background-color: #ff9d0a;
+    border: 1px solid grey;
+}
+
+

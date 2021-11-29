@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!-- meta tags -->
+        
+        <meta charset="UTF-8">
+        <meta name="HandheldFriendly" content="true"/> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        <meta name="description" content="Just a Simple Calculator">
+        <meta name="keywords" content="Simple Calculator,Calculator">
+        <meta name="author" content="Luke Chulack">
+
+        <meta property="og:title" content="Simple Calculator" />
+        <meta property="og:description" content="Just a Simple Calculator" />
+        <meta property="og:image" content="" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta property="twitter:title" content="Simple Calculator" />
+        <meta property="twitter:description" content="Just a Simple Calculator" />
+        <meta property="twitter:image" content="" />
+
+
+        <!-- non-meta tags  -->
+        
+        <title>Simple Calculator</title>
+        
+        <link rel="stylesheet" href="./front-end/style/css/style.css">
+
+    </head>
+
+    <body>
+
+        <header>
+
+            <nav>
+
+
+            </nav>
+
+        </header>
+
+        <main>
+
+            <!-- calcultor form setup -->
+            <form id="calcultor" name="calcultor">
+
+                <table>
+
+                    <tr id="rowOne" >
+
+                        <td colspan="4">
+                            <input id="results" name="results" placeholder="0"  disabled="true" >
+                        </td>
+
+                    </tr>
+
+                    <tr id="rowTwo">
+
+                        <td>
+
+                            <input id="clearBTN" name="clear" type="button" value="C">
+
+                        </td>
+
+                        <td>
+
+                            <input id="zeroBTN" class="numBTN" name="zero" type="button" value="0">
+
+                        </td>
+
+                        <td>
+
+                            <input id="decimalBTN" name="decimal" type="button" value=".">
+
+                        </td>
+
+                        <td>
+
+                            <input id="divionBTN" name="division" type="button" value="&#247;">
+
+                        </td>
+
+                    </tr>
+
+                    <tr id="rowThree">
+
+                        <td>
+
+                            <input id="sevenBTN" class="numBTN" name="seven" type="button" value="7">
+
+                        </td>
+
+                        <td>
+
+                            <input id="eightBTN" class="numBTN" name="eight" type="button" value="8">
+
+                        </td>
+
+                        <td>
+
+                            <input id="nineBTN" class="numBTN" name="nine" type="button" value="9">
+
+                        </td>
+
+                        <td>
+
+                            <input id="multiplicationBTN" name="multiplication" type="button" value="&#215;">
+
+                        </td>
+
+                    </tr>
+
+                    <!-- middel of rows  -->
+
+                    <tr id="rowFour">
+
+                        <td>
+
+                            <input id="fourBTN" class="numBTN" name="four" type="button" value="4">
+
+                        </td>
+
+                        <td>
+
+                            <input id="fiveBTN" class="numBTN" name="five" type="button" value="5">
+
+                        </td>
+
+                        <td>
+
+                            <input id="sixBTN" class="numBTN" name="six" type="button" value="6">
+
+                        </td>
+
+                        <td>
+
+                            <input id="additionBTN"  name="addition" type="button" value="&#43;">
+
+                        </td>
+
+                    </tr>
+
+                    <tr id="rowFive">
+
+                        <td>
+
+                            <input id="oneBTN" class="numBTN" name="one" type="button" value="1">
+
+                        </td>
+
+                        <td>
+
+                            <input id="twoBTN" class="numBTN" name="two" type="button" value="2">
+
+                        </td>
+
+                        <td>
+
+                            <input id="threeBTN" class="numBTN" name="three" type="button" value="3">
+
+                        </td>
+
+                        <td>
+
+                            <input id="subtractionBTN" name="subtraction" type="button" value="&#8722;">
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr id="rowSix">
+
+                        <td colspan="4">
+
+                            <input id="equalsBTN" name="equals" type="button" value="&#61;">
+
+                        </td>
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </form>
+
+        </main>
+
+        <footer>
+
+
+        </footer>
+
+        <!--  the semi model -->
+        <script src="./front-end/scripts/javascript/lib/class/Model.js"></script>
+
+           <!--  the  controller model -->
+
+        <script src="./front-end/scripts/javascript/lib/class/Controller.js"></script>
+
+        <!-- general javascript -->
+
+        <script src="./front-end/scripts/javascript/script.js"></script>
+
+
+    </body>
+
+</html>
