@@ -8,6 +8,7 @@
 --  10/22/2021       Luke Chulack     -- made the View_Individual_Artist view, media data with artist, added a group artist select, and complated all requested actions --
 -- 10/25/2021 -- added  the stored procedures form lab 1  for week 5
 --  10/29/2021 created the rest of the stored procedures 
+-- 12/6/2021 Luke Chulack -- add new permissions
 -- ******************************************************************************************** --
 
 -- create database
@@ -950,4 +951,47 @@ PRINT 'An error occurred. Row was not deleted.';
 exec sp_del_media 1; -- error
 go
   -- select * from media 
+
+  -- add permissions to ptored procs for BooksUser
+
+
+  -- media
+    grant exec on sp_ins_media to [ServerB05\BooksUser];
+   go
+
+   grant exec on sp_upd_media to  [ServerB05\BooksUser];
+   go
+
+   grant exec on sp_del_media to [ServerB05\BooksUser];
+   go
+
+   --- artist
+
+       grant exec on sp_ins_artist to [ServerB05\BooksUser];
+   go
+
+   grant exec on sp_upd_artist to  [ServerB05\BooksUser];
+   go
+
+   grant exec on sp_del_artist to [ServerB05\BooksUser];
+   go
+
+   -- intersection table
+   grant exec on sp_ins_mediaIntersectiontable to [ServerB05\BooksUser];
+   go
+
+   grant exec on sp_upde_mediaIntersectiontable to  [ServerB05\BooksUser];
+   go
+
+
+   -- borrowers
+
+   grant exec on sp_ins_borrower to [ServerB05\BooksUser];
+   go
+
+
+   grant exec on sp_del_borrower to [ServerB05\BooksUser];
+   go
+
+
 
