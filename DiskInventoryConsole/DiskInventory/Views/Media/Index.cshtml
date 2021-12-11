@@ -1,0 +1,70 @@
+﻿@model List<Medium>
+@{
+    ViewBag.Title = "Media Manager";
+
+}
+
+<!--
+    Original Author: Luke Chulack
+    Date Created:  11/12/2021
+    Version: 3.0
+    Date Last Modified: 12/10/2021
+    Modified by: Luke Chulack
+    Modification log:
+
+           version 1.0 -  11/12/2021  -  Media view which builds the table that displays the Media data.
+           version 2.0 -  11/19/2021  -  Added an add, edit, and delete button for the Media data in the table.
+           version 3.0 -  12/10/2021  -  added the respective success message code to the view regarding add, edit, and delete.
+
+    -->
+@if (TempData["actionMessage"] != null)
+{
+    <div class="alert alert-success role="alert">
+        @switch (TempData["actionMessage"])
+        {
+            case "added":
+                <span>Content has been added </span>
+                break;
+            case "updated":
+                <span>Content has been updated</span>
+                break;
+            case "delete":
+                <span>Content has been deleted</span>
+                break;
+        }
+
+    </div>
+}
+<h1>@ViewBag.title</h1>
+<a asp-controller="Media" asp-action="Add">Add a Media</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Media ID</th>
+            <th>Media Name</th>
+            <th>Release Date</th>
+
+            <th>Genre</th>
+            <th>Status</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var media in Model)
+        {
+            <tr>
+                <td>@media.MediaId</td>
+                <td>@media.MediaName</td>
+                <td>@media.ReleseDate</td>
+
+                <td>@media.GenreId</td>
+                <td>@media.StatusId</td>
+                <td>@media.MediaTypeId</td>
+
+                <td><a asp-controller="Media" asp-action="Edit" asp-route-id="@media.MediaId">Edit</a></td>
+                <td><a asp-controller="Media" asp-action="Delete" asp-route-id="@media.MediaId">Delete</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>

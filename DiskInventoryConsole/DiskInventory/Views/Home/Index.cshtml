@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4 h1MainDisplay">Welcome To DiskInventory</h1>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <a class="btnHome" asp-controller="Artist" asp-action="Index" style="text-decoration:none;">
+
+                    <div class="card-counter oneCard">
+
+                        <i class="fas fa-user"></i>
+
+
+
+
+
+
+                        <span class="nameFunc">Artist List</span>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-4">
+                <a class="btnHome" asp-controller="Borrower" asp-action="Index" style="text-decoration:none;">
+                    <div class="card-counter twoCard">
+
+
+                        <i class="fas fa-users"></i>
+
+
+                        <span class="nameFunc">Borrower List</span>
+                    </div>
+                </a>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <a class="btnHome" asp-controller="Media" asp-action="Index" style="text-decoration:none;">
+
+                    <div class="card-counter threeCard">
+
+                        <i class="fas fa-compact-disc"></i>
+
+
+                        <span class="nameFunc">Media List</span>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 fourCard" >
+                    <a class="btnHome" asp-controller="MediaIntersectiontable" asp-action="Index">
+
+                        <div class="card-counter ">
+
+                            <i class="fa fa-shopping-cart" style="color: #FFF;" ></i>
+
+
+                            <span class="nameFunc" style=" color: #FFF;">Check Out Management</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>

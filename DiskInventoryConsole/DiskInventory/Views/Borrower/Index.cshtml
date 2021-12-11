@@ -1,0 +1,70 @@
+﻿@model List<Borrower>
+@{
+    ViewBag.Title = "Borrower Manager";
+
+}
+
+<!--
+    Original Author: Luke Chulack
+    Date Created:  11/12/2021
+    Version: 2.0
+    Date Last Modified: 12/10/2021
+    Modified by: Luke Chulack
+    Modification log:
+
+           version 1.0 -  11/12/2021  -  Borrower view which builds the table that displays the Borrower data.
+           version 2.0 -  12/10/2021  -  added the respective success message code to the view regarding add, edit, and delete.
+
+    -->
+@if (TempData["actionMessage"] != null)
+{
+    <div class="alert alert-success role="alert">
+        @switch (TempData["actionMessage"])
+        {
+            case "added":
+                <span>Content has been added </span>
+                break;
+            case "updated":
+                <span>Content has been updated</span>
+                break;
+            case "delete":
+                <span>Content has been deleted</span>
+                break;
+        }
+
+    </div>
+}
+<h1>@ViewBag.title</h1>
+<a asp-controller="Borrower" asp-action="Add" style="text-decoration:none;">Add</a>
+<br />
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Borrower ID</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Borrower Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var borrower in Model)
+        {
+            <tr>
+                <td>@borrower.BorrowerId</td>
+                <td>@borrower.Lname</td>
+                <td>@borrower.Fname</td>
+                <td>@borrower.BorrowerPhoneNum</td>
+
+                <td>
+                    <a asp-controller="Borrower" asp-action="Edit" asp-route-id="@borrower.BorrowerId">Edit</a>
+
+
+
+                </td>
+                <td><a asp-controller="Borrower" asp-action="Delete" asp-route-id="@borrower.BorrowerId">Delete</a></td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

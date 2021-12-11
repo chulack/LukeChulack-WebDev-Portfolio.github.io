@@ -1,0 +1,66 @@
+﻿@model List<Artist>
+@{
+    ViewBag.Title = "Artist Manager";
+
+}
+<!--
+    Original Author: Luke Chulack
+    Date Created:  11/12/2021
+    Version: 3.0
+    Date Last Modified: 12/10/2021
+    Modified by: Luke Chulack
+    Modification log:
+
+           version 1.0 -  11/12/2021  -  Artist view which builds the table that displays the Artist data.
+           version 2.0 -  11/19/2021  -  Added an add, edit, and delete button for the Artist data in the table.
+           version 3.0 -  12/10/2021  - added secccess banner code;
+
+    -->
+@if (TempData["actionMessage"] != null)
+{
+<div class="alert alert-success role="alert">
+    @switch (TempData["actionMessage"])
+    {
+        case "added":
+    <span>Content has been added </span>
+            break;
+        case "updated":
+    <span>Content has been updated</span>
+            break;
+        case "delete":
+    <span>Content has been deleted</span>
+            break;
+    }
+
+</div>
+}
+<h1>@ViewBag.title</h1>
+<a asp-controller="Artist" asp-action="Add">Add an Artist</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Artist ID</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var artist in Model)
+        {
+        <tr>
+            <td>@artist.ArtistId</td>
+            <td>@artist.ArtistLname</td>
+            <td>@artist.ArtistFname</td>
+            <td>@artist.ArtistTypeId</td>
+            <td>
+                <a asp-controller="Artist" asp-action="Edit" asp-route-id="@artist.ArtistId">Edit</a>
+
+
+
+            </td>
+            <td><a asp-controller="Artist" asp-action="Delete" asp-route-id="@artist.ArtistId">Delete</a></td>
+        </tr>
+            }
+    </tbody>
+</table>

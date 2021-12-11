@@ -1,0 +1,24 @@
+﻿@model Medium
+@{
+
+    ViewBag.Title = "Delete Media";
+
+}
+<!--
+    Original Author: Luke Chulack
+    Date Created:  11/19/2021
+    Version: 1.0
+    Date Last Modified: 11/19/2021
+    Modified by: Luke Chulack
+    Modification log:
+
+           version 1.0 -  11/19/2021  - delete view for confirmation to activate the delete action regarding the Media data.
+
+    -->
+<h2>Confirm Delete?</h2>
+<h3>@Model.MediaName </h3>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="MediaId" />
+    <button type="submit" class="btn btn-primary"> Delete </button>
+    <a asp-controller="Media" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

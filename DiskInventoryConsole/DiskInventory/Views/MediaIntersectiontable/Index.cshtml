@@ -1,0 +1,70 @@
+﻿@model List<MediaIntersectiontable>
+@{
+    ViewBag.Title = "Check out Manager";
+
+}
+<!--
+    Original Author: Luke Chulack
+    Date Created:  12/3/2021
+    Version: 2.0
+    Date Last Modified: 12/10/2021
+    Modified by: Luke Chulack
+    Modification log:
+
+           version 1.0 -  12/3/2021  -  MediaIntersectiontable view which builds the table that displays the MediaIntersectiontable data.
+           version 2.0 -  12/10/2021  -  added the respective success message code to the view regarding add and edit.
+
+
+    -->
+@if (TempData["actionMessage"] != null)
+{
+    <div class="alert alert-success role="alert">
+        @switch (TempData["actionMessage"])
+        {
+            case "added":
+                <span>Content has been added </span>
+                break;
+            case "updated":
+                <span>Content has been updated</span>
+                break; 
+                /*
+            case "delete":
+                <span>Content has been deleted</span>
+                break;
+                */
+        }
+
+    </div>
+}
+<h1>@ViewBag.title</h1>
+<a asp-controller="MediaIntersectiontable" asp-action="Add">Add an Borrower to disk</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Media Name</th>
+            <th>Borrower Last Name</th>
+            <th>Borrower First Name</th>
+            <th>Borrowed Date</th>
+            <th>Returned Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mediaintersectiontable in Model)
+        {
+            <tr>
+                <td>@mediaintersectiontable.Media.MediaName</td>
+                <td>@mediaintersectiontable.Borrower.Lname</td>
+                <td>@mediaintersectiontable.Borrower.Fname</td>
+                <td>@mediaintersectiontable.BorrowedDate.ToString("dd MMM yyyy")</td>
+                <td>@mediaintersectiontable.ReturnedDate?.ToString("dd MMM yyyy")</td>
+
+                <td>
+                    <a asp-controller="MediaIntersectiontable" asp-action="Edit" asp-route-id="@mediaintersectiontable.MediaIntersectionId">Edit</a>
+
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

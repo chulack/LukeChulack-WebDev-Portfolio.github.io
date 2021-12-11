@@ -1,0 +1,58 @@
+﻿@model Artist
+@{
+    string title = ViewBag.Action;
+    ViewBag.Title = title;
+
+}
+<!--
+    Original Author: Luke Chulack
+    Date Created:  11/19/2021
+    Version: 1.0
+    Date Last Modified: 11/19/2021
+    Modified by: Luke Chulack
+    Modification log:
+
+           version 1.0 -  11/19/2021  -  Edit for the Artist view, this edit view works with both add and edit.
+
+    -->
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="Edit" method="post">
+
+    <div asp-validation-summary="All" class="text-danger">
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ArtistFname">
+            First Name
+        </label>
+        <input asp-for="ArtistFname" class="form-control" />
+
+
+    </div>
+    <div class="form-group">
+        <label asp-for="ArtistLname">
+            Last Name
+        </label>
+        <input asp-for="ArtistLname" class="form-control" />
+
+
+    </div>
+    <div>
+        <label asp-for="ArtistTypeId">Artist Type</label>
+        <select asp-for="ArtistTypeId" class="form-control">
+            <option value="select a type">Select a Type</option>
+            @foreach (ArtistType t in ViewBag.ArtistTypes)
+            {
+                <option value="@t.ArtistTypeId">@t.Description</option>
+
+            }
+        </select>
+    </div>
+    <input type="hidden" asp-for="ArtistId" />
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="Artist" asp-action="Index" class="btn btn-primary">Cancel</a>
+
+
+</form>

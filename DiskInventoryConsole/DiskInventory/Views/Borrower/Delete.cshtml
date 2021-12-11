@@ -1,0 +1,24 @@
+﻿@model Borrower
+@{
+
+    ViewBag.Title = "Delete Artist";
+
+}
+<!--
+    Original Author: Luke Chulack
+    Date Created:  12/3/2021
+    Version: 1.0
+    Date Last Modified: 12/3/2021
+    Modified by: Luke Chulack
+    Modification log:
+
+           version 1.0 -  12/3/2021  - delete view for confirmation to activate the delete action regarding the Borrower data.
+
+    -->
+<h2>Confirm Delete?</h2>
+<h3> @Model.Fname @Model.Lname  </h3>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="BorrowerId" />
+    <button type="submit" class="btn btn-primary"> Delete </button>
+    <a asp-controller="Borrower" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

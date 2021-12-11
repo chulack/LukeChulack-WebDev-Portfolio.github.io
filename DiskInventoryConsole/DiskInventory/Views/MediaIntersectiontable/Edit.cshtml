@@ -1,0 +1,61 @@
+﻿@model MediaIntersectiontable
+@{
+    string title = ViewBag.Action + " Media";
+    ViewBag.Title = title;
+
+}
+<!--
+    Original Author: Luke Chulack
+    Date Created:  12/3/2021
+    Version: 1.0
+    Date Last Modified: 12/4/2021
+    Modified by: Luke Chulack
+    Modification log:
+
+           version 1.0 -  12/3/2021  -  Edit for the MediaIntersectiontable view, this edit view works with both add and edit.
+
+    -->
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"> </div>
+
+    <div>
+        <label asp-for="MediaId">Disk</label>
+        <select asp-for="MediaId" class="form-control">
+            <option value="select a disk">select a disk</option>
+            @foreach (Medium media in ViewBag.Media)
+            {
+                <option value="@media.MediaId">@media.MediaName</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="BorrowerId">Status</label>
+        <select asp-for="BorrowerId" class="form-control">
+            <option value="select a borrower">select a borrower</option>
+            @foreach (Borrower borrower in ViewBag.Borrowers)
+            {
+                <option value="@borrower.BorrowerId">@borrower.Lname, @borrower.Fname</option>
+            }
+        </select>
+    </div>
+
+
+    <div>
+        <label asp-for="BorrowedDate">Borrowed Date</label>
+        <input type="date" asp-for="BorrowedDate" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="ReturnedDate">Returned Date</label>
+        <input type="date" asp-for="ReturnedDate" class="form-control" />
+    </div>
+
+
+    <input type="hidden" asp-for="MediaIntersectionId" />
+    <br />
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="MediaIntersectiontable" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
+
