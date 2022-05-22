@@ -6,7 +6,7 @@
 if(isset($_POST["send"])) {
 
     	
-	$ldap_dn = "cn=".$_POST["username"].",dc=example,dc=com";
+	$ldap_dn = "uid=".$_POST["username"].",dc=example,dc=com";
 
 	$ldap_password = $_POST["password"];
 	
@@ -16,7 +16,7 @@ if(isset($_POST["send"])) {
 	
 	if(ldap_bind($ldap_con, $ldap_dn, $ldap_password)) {
 
-	  echo "Bind successful!";
+	  echo "Logged In successfully!";
 	  
 	} else {
 		echo "Invalid user/pass or other errors!";
@@ -35,7 +35,7 @@ if(isset($_POST["send"])) {
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" action="./test.php">
+    <form method="POST" action="./LDAPLoginTest.php">
             <input type="text" name="username" placeholder="username">
 
             <br>
