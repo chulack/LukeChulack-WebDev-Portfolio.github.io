@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <input id="ti1" value ="TEST"/>
+  <input id="ti2"/>
+  <button onClick="convert();">Convert!</button>
+
+  <br>
+  <br>
+
+
+  <input id="ti3" value ="1010100 1000101 1010011 1010100"/>
+  <input id="ti4"/>
+
+
+  <button onClick="binarytoString(`${document.querySelector('#ti3').value}`);">Convert!</button>
+
+
+  <script>
+            function convert() {
+  var output = document.getElementById("ti2");
+  var input = document.getElementById("ti1").value;
+  output.value = "";
+  for (var i = 0; i < input.length; i++) {
+      output.value += input[i].charCodeAt(0).toString(2) + " ";
+  }
+}
+
+
+
+function binarytoString(str) {
+  document.querySelector('#ti4').value =  str.split(/\s/).map(function (val){
+    return String.fromCharCode(parseInt(val, 2));
+  }).join("");
+}
+
+  </script>
+      
+</body>
+</html>
