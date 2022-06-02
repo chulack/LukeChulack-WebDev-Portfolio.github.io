@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="submit" onclick="main.getDataFromAPI('./api.php')" value="false">
+    <input type="submit" onclick="main.getDataFromAPI()" value="true">
+
+    <p id="output"></p>
+
+    <script>
+
+        class main {
+            
+
+            static getDataFromAPI($url = "./api.php?api=true") {
+
+                fetch($url).then( (response)=> {
+                    // The API call was successful!
+                    return (response.json());
+                }).then( (data)=> {
+                    // This is the JSON from our response
+                    document.querySelector("#output").innerHTML = data.isTrue;
+                })
+
+
+            }
+            
+
+        }
+
+    </script>
+
+</body>
+</html>
